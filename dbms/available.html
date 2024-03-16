@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Train Ticket Booking</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-image: url(photo-1442570468985-f63ed5de9086.avif);
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        margin: 0;
+                        padding: 0;
+                        background-color: #f0f0f0;
+                    }
+            
+                    header {
+                        background-color: #2e24bd;
+                        color: white;
+                        text-align: center;
+                        padding: 1em;
+                    }
+            
+                    main {
+                        max-width: 800px;
+                        margin: 20px auto;
+                        background-color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+            
+                    form {
+                        margin-top: 20px;
+                    }
+            
+                    label {
+                        display: block;
+                        margin-bottom: 8px;
+                    }
+            
+                    input, select {
+                        width: 100%;
+                        padding: 8px;
+                        margin-bottom: 15px;
+                        box-sizing: border-box;
+                    }
+            
+                    button {
+                        padding: 10px;
+                        background-color: #333;
+                        color: white;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 5px;
+                    }
+            
+                    button:hover {
+                        background-color: #555;
+                    }
+                </style>
+            </head>
+            <body>
+                <header>
+                    <h1>Train Ticket Booking</h1>
+                </header>
+            
+                <main>
+                    <form action="booking.php" method="post">
+                        <label for="start_station">Start Station:</label>
+                        <select name="start_station" required>
+                            <option value="Secunderabad">Secunderabad</option>
+                            <option value="Mahabubnagar">Mahabubnagar</option>
+                            <option value="Tandur">Tandur</option>
+                            <option value="kachiguda">kachiguda</option>
+                            <option value="Nampally">Nampally</option>
+                            <option value="Gadwal">Gadwal</option>
+            
+                            <option value="Rachiur">Rachiur</option>
+                            <option value="kurnool">kurnool</option>
+            
+                            <option value="Nizambad">Nizambad</option>
+                            <option value="Mumbai">Mumbai</option>
+            
+                            <option value="Delhi">Delhi</option>
+                            <option value="Bengal">Bengal</option>
+            
+                            
+                            <!-- Add more stations as needed -->
+                        </select>
+            
+                        <label for="destination_station">Destination Station:</label>
+                        <select name="destination_station" required>
+                            <option value="Tandur">Tandur</option>
+                            <option value="Mahabubnagar">Mahabubnagar</option>
+                            <option value="Secunderabad">Secunderabad</option>
+                            <option value="kachiguda">kachiguda</option>
+                            <option value="Nampally">Nampally</option>
+                            <option value="Gadwal">Gadwal</option>
+                            <option value="Rachiur">Rachiur</option>
+                            <option value="kurnool">kurnool</option>
+                            <option value="Nizambad">Nizambad</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Bengal">Bengal</option>
+                            <option value="kasi">kasi</option>
+            
+            
+            
+            
+                            <!-- Add more stations as needed -->
+                        </select>
+            
+                        <label for="train_id">Train ID:</label>
+                        <input type="text" name="train_id" required>
+                                   
+                       
+                        
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <!-- Add more stations as needed -->
+                        </select>
+            
+            
+                        <label for="seat_number" > Seat Number:</label>
+                        <select name="seat_number" required>
+                           
+                           <form
+                            <?php
+
+                          $servername = "127.0.0.1";
+                           $username = "root";
+                          $password = "";
+                           $dbname = "ticket";
+
+                           // Create connection
+                         $conn = new mysqli($servername, $username, $password, $dbname);
+
+                         // Check connection
+                          if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                                  }
+
+                               // Table name to show columns from
+                           $tableName = "reserve_seats";
+
+                              // Query to get column information
+                                $query = "DESCRIBE $tableName";
+                              $result = $conn->query($query);
+
+                          // Check if the query was successful
+                           if ($result) {
+                               echo "<h2>Columns of the table '$tableName'</h2>";
+                             echo "<table>";
+                            echo "<tr><th>Column Name</th></tr>";
+                            // Fetch and display column names
+                           while ($row = $result->fetch_assoc()) {
+                              echo "<tr><td>" . $row['Field'] . "</td></tr>";
+                               }
+                               echo "</table>";
+                             } else {
+                               echo "Error: " . $conn->error;
+                                }
+
+                               // Close the connection
+                             $conn->close();
+                                ?>
+                            </form>
+                           </section>
+
+
+
+
+
+
+                        <label for="ac_non_ac">AC or Non-AC:</label>
+                        <select name="ac_non_ac" required>
+                            <option value="ac">AC</option>
+                            <option value="non_ac">Non-AC</option>
+                        </select>
+                        <label for="booking_date">date</label>
+                        <input type="date" name="booking_date" required>
+            
+                        <label for="passenger_name">Passenger Name:</label>
+                        <input type="text" name="passenger_name" required>
+            
+                        <label for="passenger_mobile_number">Passenger Mobile:</label>
+                        <input type="tel" name="passenger_mobile_number" required>
+            
+                        <label for="passenger_email">Passenger Email:</label>
+                        <input type="email" name="passenger_email" required>
+            
+                        <label for="passenger_address">Passenger Address:</label>
+                        <textarea name="passenger_address" rows="4" required></textarea>
+            
+                        <button type="submit">Book Ticket</button>
+                    </form>
+                </main>
+            </body>
+            </html>
+                        

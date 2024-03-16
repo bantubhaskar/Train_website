@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Reminder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, button, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Train Reminder</h1>
+    </header>
+
+    <main>
+        <form action="reminder.php" method="post">
+        <label for="trainReminder">Add Train Reminder:</label>
+        <input type="text" id="trainReminder" placeholder="Enter your train reminder">
+
+        <label for="reminderDate">Select Date:</label>
+        <input type="date" id="reminderDate">
+
+        <label for="reminderTime">Select Time:</label>
+        <input type="time" id="reminderTime">
+
+        <button onclick="addTrainReminder()" type="submit" >Add</button>
+        
+    </form>        
+
+        <h2>Train Reminders</h2>
+        <ul id="trainReminderList">
+            <!-- Display train reminders dynamically using JavaScript -->
+        </ul>
+    </main>
+
+    <script>
+        // Function to add a new train reminder
+        function addTrainReminder() {
+            var trainReminderText = document.getElementById("trainReminder").value;
+            var reminderDate = document.getElementById("reminderDate").value;
+            var reminderTime = document.getElementById("reminderTime").value;
+
+            if (trainReminderText.trim() !== "" && reminderDate && reminderTime) {
+                // Create a new list item
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(trainReminderText + " - " + reminderDate + " " + reminderTime));
+
+                // Append the new list item to the ul
+                document.getElementById("trainReminderList").appendChild(li);
+
+                // Clear the input fields
+                document.getElementById("trainReminder").value = '';
+                document.getElementById("reminderDate").value = '';
+                document.getElementById("reminderTime").value = '';
+            }
+        }
+        
+    </script>
+    
+</body>
+</html>

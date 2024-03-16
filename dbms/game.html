@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Seats</title>
+</head>
+<body>
+
+<label for="seat_number">Available Seats:</label>
+<select name="seat_number" id="seatNumberDropdown" required>
+    <!-- JavaScript code will dynamically populate this dropdown -->
+</select>
+
+<script>
+// Mock data (replace this with actual data from your server/database)
+const bookedSeats = [2, 5, 8, 10]; // Example: List of booked seat numbers
+
+// Function to populate the dropdown with available seats
+function populateDropdown() {
+    const dropdown = document.getElementById('seatNumberDropdown');
+    
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Mock all available seats (replace this with actual total seats)
+    const totalSeats = 20;
+    for (let seatNumber = 1; seatNumber <= totalSeats; seatNumber++) {
+        // Check if the seat is not booked
+        if (!bookedSeats.includes(seatNumber)) {
+            // Check if the seat is not already in the dropdown
+            if (![...dropdown.options].some(option => option.value === seatNumber.toString())) {
+                const option = document.createElement('option');
+                option.value = seatNumber;
+                option.textContent = `Seat ${seatNumber}`;
+                dropdown.appendChild(option);
+            }
+        }
+    }
+}
+
+// Call the function to populate the dropdown
+populateDropdown();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chart Board - Train Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+     <script src="https://unpkg.com/compromise"></script>
+</head>
+<body>
+    <header>
+        <h1>AI Chart Board - Train Management System</h1>
+    </header>
+
+   
+
+   
+
+<body>
+    <h2>Basic AI for Queries</h2>
+    <label for="query">Ask me something:</label>
+    <input type="text" id="query" placeholder="e.g., What is the weather like today?" oninput="handleQuery()">
+    <div id="output"></div>
+
+    <script>
+        function handleQuery() {
+            // Get user input
+            const userInput = document.getElementById('query').value.toLowerCase();
+
+            // Use 'compromise' for basic natural language processing
+            const terms = window.nlp(userInput).terms().out('array');
+
+            // Define responses based on extracted keywords
+            const responses = {
+                "weather": "I'm sorry, I don't know the weather right now.",
+                "time": "The current time is " + new Date().toLocaleTimeString() + ".",
+                "greeting": "Hello! How can I assist you?",
+                "default": "I'm sorry, I don't understand that question."
+            };
+
+            // Determine the appropriate response based on keywords
+            const response = terms.some(term => responses[term]) ? responses[terms[0]] : responses["default"];
+
+            // Display the response
+            const outputElement = document.getElementById('output');
+            outputElement.textContent = response;
+        }
+    </script>
+</body>
+</html>
+

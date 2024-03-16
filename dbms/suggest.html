@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Suggestion Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Passenger Suggestion Page</h1>
+    </header>
+
+    <main>
+        <p>Click the button to get personalized suggestions:</p>
+        <button onclick="getPassengerSuggestions()">Get Suggestions</button>
+
+        <div id="suggestionResult"></div>
+
+        <script>
+            function getPassengerSuggestions() {
+                // This is a placeholder for the actual suggestion logic.
+                // In a real-world scenario, this would involve server-side processing.
+
+                // Assume the suggestions are generated on the server and returned as JSON.
+                const suggestions = [
+                    "Upgrade to a business class seat for a discounted price.",
+                    "Explore our new in-train entertainment system.",
+                    "Try our special onboard meal service."
+                ];
+
+                // Display the suggestions on the webpage.
+                const suggestionResult = document.getElementById('suggestionResult');
+                suggestionResult.innerHTML = "<h3>Personalized Suggestions:</h3><ul>";
+
+                suggestions.forEach(suggestion => {
+                    suggestionResult.innerHTML += `<li>${suggestion}</li>`;
+                });
+
+                suggestionResult.innerHTML += "</ul>";
+            }
+        </script>
+    </main>
+</body>
+</html>
